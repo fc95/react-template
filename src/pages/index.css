@@ -1,0 +1,8 @@
+.hello {
+  color: red;
+  transform: scale(1);
+  background-image: url('../assets/sonoai.png');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+}
