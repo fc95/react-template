@@ -5,7 +5,7 @@ const CopyWebpackPlugin = require('copy-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const defaultSetting = require('./config/defaultSetting');
 
-const { publicPath = "/" } = defaultSetting;
+const { publicPath = "" } = defaultSetting;
 console.log(publicPath);
 // const { NODE_ENV = 'development' } = process.env;
 // const isDevMode = NODE_ENV !== 'production';
@@ -26,7 +26,7 @@ module.exports = {
     port: 8004,
     open: true,
     hot: true,
-    hotOnly: true,
+    // hotOnly: true,
     historyApiFallback: true,
   },
   resolve: {

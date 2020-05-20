@@ -13,7 +13,7 @@ import './reset.css';
 
 function App() {
   return (
-    <Router basename="/answer-ui/">
+    <Router basename={window.routerBase}>
       <div>
         <ul>
           <li>

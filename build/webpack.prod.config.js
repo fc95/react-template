@@ -9,6 +9,10 @@ const CopyWebpackPlugin = require('copy-webpack-plugin');
 // const { NODE_ENV = 'development' } = process.env;
 // const isDevMode = NODE_ENV !== 'production';
 console.log(process.env.NODE_ENV);
+const defaultSetting = require('./config/defaultSetting');
+
+const { publicPath = "" } = defaultSetting;
+console.log(publicPath);
 
 module.exports = {
   mode: 'production', // 模式 development | production
@@ -17,7 +21,7 @@ module.exports = {
   },
   output: {
     path: path.resolve(__dirname, '../dist'),
-    // publicPath: '/',
+    publicPath,
     filename: '[name].[hash].js'
   },
   resolve: {
