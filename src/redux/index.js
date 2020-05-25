@@ -3,10 +3,14 @@ import {
   combineReducers,
   // applyMiddleware,
 } from 'redux';
-import { todoReducer } from './reducers';
+import {
+  todoReducer,
+  patientReducer
+} from './reducers';
 
 const reducers = combineReducers({
-  todoList: todoReducer
+  todoList: todoReducer,
+  patient: patientReducer,
 });
 const store = createStore(reducers);
 

@@ -1,7 +1,7 @@
 const path = require('path');
 // webpack v4 the extract-text-webpack-plugin should not be used for css
 // const ExtractTextPlugin = require('extract-text-webpack-plugin');
-const CopyWebpackPlugin = require('copy-webpack-plugin');
+// const CopyWebpackPlugin = require('copy-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const defaultSetting = require('./config/defaultSetting');
 
@@ -27,6 +27,7 @@ module.exports = {
     open: true,
     hot: true,
     // hotOnly: true,
+    host: '0.0.0.0',
     historyApiFallback: true,
   },
   resolve: {
@@ -56,12 +57,16 @@ module.exports = {
           loader: 'babel-loader',
           options: {
             babelrc: false,
-            presets: ['@babel/preset-env', '@babel/preset-react']
+            presets: ['@babel/preset-env', '@babel/preset-react'],
+            plugins: [
+              ['import', { libraryName: "antd-mobile", style: "css" }],
+            ]
           }
         }
       },
       {
         test: /\.(le|c)ss$/,
+        exclude: /node_modules/,
         use: [
           'style-loader',
           {
@@ -78,7 +83,36 @@ module.exports = {
             },
           },
           'postcss-loader',
-          'less-loader',
+          {
+            loader: 'less-loader',
+            options: {
+              lessOptions: {
+                javascriptEnabled: true
+              }
+            }
+          },
+        ],
+      },
+      {
+        test: /\.(le|c)ss$/,
+        exclude: /src/,
+        use: [
+          'style-loader',
+          {
+            loader: 'css-loader',
+            options: {
+              importLoaders: 1,
+            },
+          },
+          'postcss-loader',
+          {
+            loader: 'less-loader',
+            options: {
+              lessOptions: {
+                javascriptEnabled: true
+              }
+            }
+          },
         ],
       },
       {
@@ -96,13 +130,13 @@ module.exports = {
     ]
   },
   plugins: [
-    new CopyWebpackPlugin({
-      patterns: [
-        {
-          from: path.resolve(__dirname, '../public'),
-        }
-      ]
-    }),
+    // new CopyWebpackPlugin({
+    //   patterns: [
+    //     {
+    //       from: path.resolve(__dirname, '../public'),
+    //     }
+    //   ]
+    // }),
     new HtmlWebpackPlugin({
       filename: 'index.html',
       template: path.resolve(__dirname, '../src/index.html'),

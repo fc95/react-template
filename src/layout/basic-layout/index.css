@@ -1,0 +1,17 @@
+.basicLayout {
+	min-height: 100vh;
+	display: flex;
+	flex-flow: column nowrap;
+}
+
+.pageBody {
+	flex: 1;
+}
+
+.footer {
+	height: 45px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	color: #666;
+}

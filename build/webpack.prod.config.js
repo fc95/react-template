@@ -4,7 +4,7 @@ const path = require('path');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
-const CopyWebpackPlugin = require('copy-webpack-plugin');
+// const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 // const { NODE_ENV = 'development' } = process.env;
 // const isDevMode = NODE_ENV !== 'production';
@@ -30,7 +30,7 @@ module.exports = {
     },
     extensions: ['.js', '.jsx', '.ts', '.tsx']
   },
-  devtool: 'source-map',
+  // devtool: 'source-map',
   performance: {
     hints: false
   },
@@ -51,12 +51,16 @@ module.exports = {
           loader: 'babel-loader',
           options: {
             babelrc: false,
-            presets: ['@babel/preset-env', '@babel/preset-react']
+            presets: ['@babel/preset-env', '@babel/preset-react'],
+            plugins: [
+              ['import', { libraryName: "antd-mobile", style: "css" }],
+            ]
           }
         }
       },
       {
         test: /\.(le|c)ss$/,
+        exclude: /node_modules/,
         use: [
           {
             loader: MiniCssExtractPlugin.loader,
@@ -78,7 +82,41 @@ module.exports = {
             },
           },
           'postcss-loader',
-          'less-loader',
+          {
+            loader: 'less-loader',
+            options: {
+              lessOptions: {
+                javascriptEnabled: true
+              }
+            }
+          },
+        ],
+      },
+      {
+        test: /\.(le|c)ss$/,
+        exclude: /src/,
+        use: [
+          {
+            loader: MiniCssExtractPlugin.loader,
+            options: {
+              hmr: true,
+            },
+          },
+          {
+            loader: 'css-loader',
+            options: {
+              importLoaders: 1,
+            },
+          },
+          'postcss-loader',
+          {
+            loader: 'less-loader',
+            options: {
+              lessOptions: {
+                javascriptEnabled: true
+              }
+            }
+          },
         ],
       },
       {
@@ -97,17 +135,18 @@ module.exports = {
   },
   plugins: [
     new CleanWebpackPlugin(),
-    new CopyWebpackPlugin({
-      patterns: [
-        {
-          from: path.resolve(__dirname, '../public'),
-        }
-      ]
-    }),
+    // new CopyWebpackPlugin({
+    //   patterns: [
+    //     {
+    //       from: path.resolve(__dirname, '../public'),
+    //     }
+    //   ]
+    // }),
     new HtmlWebpackPlugin({
       filename: 'index.html',
       template: path.resolve(__dirname, '../src/index.html'),
       // hash: true,
+      minify: false,
     }),
     new MiniCssExtractPlugin({
       filename: '[name].[hash].css',

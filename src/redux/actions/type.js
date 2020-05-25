@@ -1,0 +1,6 @@
+
+// PATIENT
+export const PATIENTINFOCHANGE = 'PATIENT_INFO_CHANGE';
+// TODO
+export const TODOADD = 'TODO_ADD';
+export const TODODELETE = 'TODO_DELETE';
