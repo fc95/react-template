@@ -10,8 +10,81 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
   <title>掌超报告</title>
   <!-- <link rel="icon" href="<%= htmlWebpackPlugin.files.publicPath %>favicon.png" /> -->
-  <script>
+  <!-- <script>
     window.routerBase = "<%= htmlWebpackPlugin.files.publicPath %>";
+  </script> -->
+  <script type="text/javascript">
+    window.PubSub = {
+      handlers: {},
+      sub: function (key, handler) {
+        if (!handler) {
+          return
+        }
+        if (!(key in this.handlers)) {
+          this.handlers[key] = []
+        }
+        this.handlers[key].push(handler)
+        if (this.handlers[key].length === 0) {
+          delete this.handlers[key]
+        }
+        return this
+      },
+      unsub: function (key) {
+        if (!key || !this.handlers.hasOwnProperty(key)) return;
+        this.handlers[key].pop();
+        if (this.handlers[key].length === 0) {
+          delete this.handlers[key]
+        }
+      },
+      pub: function (key) {
+        var handlerArgs = Array.prototype.slice.call(arguments, 1)
+        if (!this.handlers[key]) {
+          return
+        }
+        if (isNaN(key)) {
+          for (var i = 0;
+            (this.handlers[key] && i < this.handlers[key].length); i++) {
+            this.handlers[key][i].apply(this, handlerArgs)
+          }
+        } else {
+          var handlerArr = this.handlers[key]
+          var handlerItem
+          if (handlerArr) {
+            while (handlerArr.length > 0) {
+              handlerItem = handlerArr.pop()
+              handlerItem.apply(this, handlerArgs)
+            }
+          }
+          if (handlerArr && handlerArr.length === 0) delete this.handlers[key]
+        }
+      },
+      clear: function () {
+        this.handlers = {}
+      }
+    }
+  </script>
+  <script type="text/javascript">
+    window.ZC = {
+      init: function(callback) {
+        PubSub.sub('inited', callback);
+        invokeAction('ZC.inited');
+      },
+      inited: function(data) {
+        // alert(1212);
+        PubSub.pub('inited', data);
+        // PubSub.unsub('inited');
+      },
+    };
+
+    function invokeAction(methodName) {
+      const dataStr = JSON.stringify({
+        patient: {},
+        todoList: [123, 234]
+      });
+      setTimeout(() => {
+        eval(methodName + "(" + dataStr + ")");
+      }, 500);
+    };
   </script>
 </head>
 

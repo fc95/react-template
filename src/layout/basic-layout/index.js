@@ -16,7 +16,10 @@ const BasicLayout = props => {
     <div className={styles.basicLayout}>
       <div className={styles.pageHeader}>
         <NavBar
-          style={{ backgroundColor: '#000' }}
+          style={{
+            backgroundColor: '#000',
+            borderBottom: '1px solid #098ded',
+          }}
           mode="dark"
           // icon={<Icon type="left" />}
           onLeftClick={() => {

@@ -1,7 +1,7 @@
 import * as actions from '../actions';
 
 const defaultState = {
-  name: '网三*',
+  name: '王三*',
   sex: '男',
   age: 23,
   phone: '13548789821',
