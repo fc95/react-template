@@ -2,7 +2,6 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import PatientInfo from '../modules/patient';
 import ImagesContainer from '../modules/image';
-
 // const isIPhone = new RegExp('\\biPhone\\b|\\biPod\\b', 'i').test(window.navigator.userAgent);
 // let moneyKeyboardWrapProps;
 // if (isIPhone) {

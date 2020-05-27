@@ -1,12 +1,27 @@
+@import '~antd-mobile/lib/style/themes/default.less';
+
 .imageHolder {
   width: 44vw;
   height: 44vw;
   margin-top: 1.5vw;
   margin-left: 4vw;
-  background-color: gray;
+  background-color: #8080805c;
   display: flex;
   justify-content: center;
   align-items: center;
   font-size: 20vw;
   color: #fff;
+}
+
+.imageTumb {
+  width: 48%;
+  height: 0;
+  padding-top: 48%;
+  background-color: #000;
+  border: 1px solid #e2e2e2;
+
+  &.active {
+    border-color: @brand-primary;
+    opacity: .9;
+  }
 }

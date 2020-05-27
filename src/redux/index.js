@@ -8,14 +8,11 @@ import {
   patientReducer
 } from './reducers';
 
-// const getInitState = () => {
-//   return window.ZC.transform('init');
-// };
-
 const reducers = combineReducers({
   todoList: todoReducer,
   patient: patientReducer,
 });
-const store = createStore(reducers);
+// const store = createStore(reducers);
 
-export default store;
+const _createStore = initState => createStore(reducers, initState);
+export default _createStore;

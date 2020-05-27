@@ -1,27 +1,23 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import {
   HashRouter as Router,
   Switch,
   Route,
-  // Link
 } from 'react-router-dom';
+import { useIntl } from 'react-intl';
 import routes from '../routers';
 import BasicLayout from '../layout/basic-layout';
-import Loading from '../components/loading';
+import intlJection from '../utils/intl-jection';
 
 const App = props => {
-  const [inited, setInited] = useState(false);
-
-  useEffect(() => {
-    window.ZC.init(data => {
-      console.log(data);
-      setInited(true);
-    });
-  }, []);
-
-  if (!inited) return <Loading />;
   return (
     <Router basename={props.basename}>
+      {
+        (function() {
+          intlJection.formatMessage = useIntl().formatMessage;
+          return null;
+        })()
+      }
       <BasicLayout routes={routes}>
         <Switch>
           {

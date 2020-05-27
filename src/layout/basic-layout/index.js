@@ -67,11 +67,11 @@ const BasicLayout = props => {
       <div className={styles.pageBody}>
         {props.children}
       </div>
-      <div className={styles.pageFooter}>
+      {/* <div className={styles.pageFooter}>
         <div className={styles.footer}>
           Copyright  2020 无锡祥生医疗科技股份有限公司
         </div>
-      </div>
+      </div> */}
     </div>
   )
 };
