@@ -12,12 +12,20 @@ ReactDOM.render(
   <Loading />,
   document.getElementById('root'));
 
-window.ZC.init((data = {}) => {
+window.PubSub.sub('inited', (data = {}) => {
   console.log('=== init data ===>', data);
-  const { locale, ...rest } = data;
+  const { Locale, Measurements, Patient = {} } = data;
+  console.log(Measurements);
+  const locale = Locale;
+  const patient = {
+    name: Patient.Name || '******',
+    sex: Patient.Sex || '******',
+    age: Patient.Age || '******',
+    id: Patient.ID || '******',
+  };
   ReactDOM.render(
     <LocaleWrapper locale={locale}>
-      <Provider store={_createStore(rest)}>
+      <Provider store={_createStore({ patient })}>
         <App basename={routerBase} />
       </Provider>
     </LocaleWrapper>,

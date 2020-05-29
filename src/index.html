@@ -65,23 +65,28 @@
   </script>
   <script type="text/javascript">
     window.ZC = {
-      init: function(callback) {
-        PubSub.sub('inited', callback);
-        invokeAction('ZC.inited');
+      init: function() {
+        invokeCSharpAction('ZC.inited');
       },
       inited: function(data) {
-        // alert(1212);
+        // alert(JSON.stringify(data));
         PubSub.pub('inited', data);
         // PubSub.unsub('inited');
       },
     };
 
-    function invokeAction(methodName) {
+    window.onload = function() {
+      ZC.init();
+    }
+
+    function invokeCSharpAction(methodName) {
       const dataStr = JSON.stringify({
-        locale: 'en-US',
+        locale: 'zh-CN',
         patient: {
-          name: '王思',
-          age: 23
+          name: '李四*',
+          age: '23',
+          sex: '男',
+          phone: '13885452568',
         },
         todoList: [123, 234]
       });

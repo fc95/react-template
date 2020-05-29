@@ -74,7 +74,7 @@ const ImagesContainer = () => {
   };
 
   return (
-    <div>
+    <div className={styles.container}>
       <Flex wrap="wrap" justify="start">
         {
           images.map((image, index) => {

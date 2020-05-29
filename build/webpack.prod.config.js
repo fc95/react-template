@@ -22,7 +22,7 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, '../dist'),
     publicPath,
-    filename: '[name].[hash].js'
+    filename: '[name].js'
   },
   resolve: {
     alias: {
@@ -149,8 +149,8 @@ module.exports = {
       minify: false,
     }),
     new MiniCssExtractPlugin({
-      filename: '[name].[hash].css',
-      chunkFilename: '[id].[hash].css',
+      filename: '[name].css',
+      chunkFilename: '[id].css',
     }),
   ]
 };

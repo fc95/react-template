@@ -1,31 +1,35 @@
 import React from 'react';
 import { Flex, WhiteSpace } from 'antd-mobile';
-import { FormattedMessage, useIntl } from 'react-intl';
+import { useSelector } from 'react-redux';
+import { FormattedMessage } from 'react-intl';
+
 import styles from './index.less';
 
 const Item = Flex.Item;
 
 const PatientInfo = () => {
-  console.log(useIntl().formatMessage({ id: 'patient.name' }));
+  const patient = useSelector(state => state.patient);
+  console.log(patient);
+
   return (
     <div className={styles.container}>
       <Flex>
         <Item>
           <div className={styles.item}>
             <label><FormattedMessage id="patient.name" />：</label>
-            <span>王山</span>
+            <span>{patient.name}</span>
+          </div>
+        </Item>
+        <Item>
+          <div className={styles.item}>
+            <label>ID：</label>
+            <span>{patient.id}</span>
           </div>
         </Item>
         <Item>
           <div className={styles.item}>
             <label><FormattedMessage id="patient.age" />：</label>
-            <span>18</span>
-          </div>
-        </Item>
-        <Item>
-          <div className={styles.item}>
-            <label>姓名：</label>
-            <span>王山</span>
+            <span>{patient.age}</span>
           </div>
         </Item>
       </Flex>
@@ -33,8 +37,8 @@ const PatientInfo = () => {
       <Flex>
         <Item>
           <div className={styles.item}>
-            <label>姓名：</label>
-            <span>王山</span>
+            <label>性别：</label>
+            <span>{patient.sex}</span>
           </div>
         </Item>
       </Flex>

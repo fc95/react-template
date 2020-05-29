@@ -1,10 +1,10 @@
 import * as actions from '../actions';
 
 const defaultState = {
-  name: '王三*',
-  sex: '男',
-  age: 23,
-  phone: '13548789821',
+  name: null,
+  sex: null,
+  age: null,
+  id: null,
 }
 
 export const patientReducer = function(state = defaultState, action) {

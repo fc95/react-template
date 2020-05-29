@@ -16,7 +16,7 @@ const localeInfo = {
 };
 
 export default function LocaleWrapper(props) {
-  const { locale = navigator.language } = props;
+  const { locale = 'zh-CN' } = props;
   return (<IntlProvider locale={locale} messages={localeInfo[locale].messages}>
     {
       props.children
