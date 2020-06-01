@@ -64,6 +64,7 @@
     }
   </script>
   <script type="text/javascript">
+    window.imageNames = ['1.png', '2.png', '3.png', '4.png', '5.png'];
     window.ZC = {
       init: function() {
         invokeCSharpAction('ZC.inited');
@@ -81,13 +82,14 @@
 
     function invokeCSharpAction(methodName) {
       const dataStr = JSON.stringify({
-        locale: 'zh-CN',
-        patient: {
-          name: '李四*',
-          age: '23',
-          sex: '男',
-          phone: '13885452568',
+        Locale: 'zh-CN',
+        Patient: {
+          Name: '李四*',
+          Age: '23',
+          Sex: '男',
+          ID: '13885452568',
         },
+        ImageNames: ['1.png', '2.png', '3.png', '4.png', '5.png'],
         todoList: [123, 234]
       });
       setTimeout(() => {

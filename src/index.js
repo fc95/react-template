@@ -14,8 +14,8 @@ ReactDOM.render(
 
 window.PubSub.sub('inited', (data = {}) => {
   console.log('=== init data ===>', data);
-  const { Locale, Measurements, Patient = {} } = data;
-  console.log(Measurements);
+  const { Locale, ImageNames, Patient = {} } = data;
+  console.log(ImageNames);
   const locale = Locale;
   const patient = {
     name: Patient.Name || '******',

@@ -5,7 +5,7 @@ import styles from './index.less';
 const ImageHolder = props => {
   return (
     <div className={styles.imageHolder}
-      style={{ backgroundColor: props.content }}
+      style={{ background: `transparent url(${props.imageName}) no-repeat center / cover` }}
       onClick={props.add}
     >
     </div>
@@ -45,8 +45,7 @@ const onWrapTouchStart = e => {
 }
 
 /* eslint-disable no-unused-vars */
-const colors = Array.from(new Array(20), _ => `#${Math.random().toString(16).slice(2, 8)}`);
-
+// const colors = Array.from(new Array(20), _ => `#${Math.random().toString(16).slice(2, 8)}`);
 const ImagesContainer = () => {
   const [images, setImages] = useState([]);
   const [selectedImages, setSelectedImages] = useState([]);
@@ -78,7 +77,7 @@ const ImagesContainer = () => {
       <Flex wrap="wrap" justify="start">
         {
           images.map((image, index) => {
-            return <ImageHolder key={index} content={image} add={handleImageAdd} />
+            return <ImageHolder key={index} imageName={image} add={handleImageAdd} />
           })
         }
         {
@@ -97,15 +96,12 @@ const ImagesContainer = () => {
         <div style={{ height: '50vh', overflow: 'auto' }}>
           <Flex wrap="wrap" justify="start" align="center">
             {
-              colors.map((color, index) => {
-                const style = {
-                  backgroundColor: color,
-                };
+              (window.imageNames || []).map((imageName, index) => {
                 return (
                   <div key={index}
-                    className={`${styles.imageTumb} ${selectedImages.includes(color) ? styles.active : ''}`}
-                    style={style}
-                    onClick={() => handleImageSelect(color)}
+                    className={`${styles.imageTumb} ${selectedImages.includes(imageName) ? styles.active : ''}`}
+                    style={{ background: `transparent url(${imageName}) no-repeat center / cover` }}
+                    onClick={() => handleImageSelect(imageName)}
                   >
                   </div>
                 )
