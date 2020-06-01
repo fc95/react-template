@@ -82,6 +82,7 @@
     function invokeCSharpAction(methodName) {
       const dataStr = JSON.stringify({
         Locale: 'zh-CN',
+        Location: 'todo-list',
         Patient: {
           Name: '李四*',
           Age: '23',
@@ -89,7 +90,6 @@
           ID: '13885452568',
         },
         ImageNames: ['1.png', '2.png', '3.png', '4.png', '5.png'],
-        todoList: [123, 234]
       });
       setTimeout(() => {
         eval(methodName + "(" + dataStr + ")");

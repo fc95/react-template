@@ -14,7 +14,8 @@ ReactDOM.render(
 
 window.PubSub.sub('inited', (data = {}) => {
   console.log('=== init data ===>', data);
-  const { Locale, ImageNames, Patient = {} } = data;
+  const { Locale, ImageNames, Patient = {}, Location = '/' } = data;
+  location.href = `#${Location}`
   console.log(ImageNames);
   const locale = Locale;
   const patient = {
