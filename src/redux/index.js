@@ -5,12 +5,14 @@ import {
 } from 'redux';
 import {
   todoReducer,
-  patientReducer
+  patientReducer,
+  imagesReducer,
 } from './reducers';
 
 const reducers = combineReducers({
   todoList: todoReducer,
   patient: patientReducer,
+  images: imagesReducer,
 });
 // const store = createStore(reducers);
 

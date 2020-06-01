@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Flex, Modal } from 'antd-mobile';
+import { useSelector } from 'react-redux';
 import styles from './index.less';
 
 const ImageHolder = props => {
@@ -50,6 +51,7 @@ const ImagesContainer = () => {
   const [images, setImages] = useState([]);
   const [selectedImages, setSelectedImages] = useState([]);
   const [visible, setVisible] = useState(false);
+  const imageNames = useSelector(state => (state.images || {}).source);
 
   const handleImageAdd = e => {
     e.preventDefault(); // 修复 Android 上点击穿透
@@ -96,7 +98,7 @@ const ImagesContainer = () => {
         <div style={{ height: '50vh', overflow: 'auto' }}>
           <Flex wrap="wrap" justify="start" align="center">
             {
-              (window.imageNames || []).map((imageName, index) => {
+              (imageNames || []).map((imageName, index) => {
                 return (
                   <div key={index}
                     className={`${styles.imageTumb} ${selectedImages.includes(imageName) ? styles.active : ''}`}

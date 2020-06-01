@@ -1,9 +1,8 @@
 import React, { useState, useEffect, useRef } from 'react';
-// import styles from './index.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { Toast, List, InputItem, Flex, WhiteSpace, Icon } from 'antd-mobile';
 import styles from './index.less';
-import * as actions from '../redux/actions';
+import * as actions from '@/redux/actions';
 
 const TodoList = () => {
   const [inputValue, setInputValue] = useState('');

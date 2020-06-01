@@ -18,14 +18,21 @@ window.PubSub.sub('inited', (data = {}) => {
   console.log(ImageNames);
   const locale = Locale;
   const patient = {
-    name: Patient.Name || '******',
-    sex: Patient.Sex || '******',
-    age: Patient.Age || '******',
-    id: Patient.ID || '******',
+    name: Patient.Name,
+    sex: Patient.Sex,
+    age: Patient.Age,
+    id: Patient.ID,
+  };
+  const initState = {
+    patient,
+    images: {
+      source: ImageNames,
+      selected: [],
+    },
   };
   ReactDOM.render(
     <LocaleWrapper locale={locale}>
-      <Provider store={_createStore({ patient })}>
+      <Provider store={_createStore(initState)}>
         <App basename={routerBase} />
       </Provider>
     </LocaleWrapper>,

@@ -1,12 +1,12 @@
-import Home from '../pages/home';
-import TodoList from '../pages/todo-list';
+import Report from '../pages/report';
+import TodoList from '../pages/todo';
 // const Home = lazy(() => import(/* webpackChunkName: 'pages-home' */'./pages/home'));
 
 const routes = [
   {
-    title: 'Home',
+    title: 'Report',
     path: '/',
-    component: Home,
+    component: Report,
     exact: true,
     layout: true,
     back: false,

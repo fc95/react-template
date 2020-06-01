@@ -2,9 +2,9 @@ import React, { useState } from 'react';
 // import html2Canvas from 'html2canvas';
 import { TextareaItem, Button } from 'antd-mobile';
 // import JsPDF from 'jspdf';
-import PatientInfo from '../modules/patient';
-import ImagesContainer from '../modules/image';
-import PrintPreview from '../modules/print-preview';
+import PatientInfo from '@/modules/patient';
+import ImagesContainer from '@/modules/image';
+import PrintPreview from '@/modules/print-preview';
 import styles from './index.less';
 // const isIPhone = new RegExp('\\biPhone\\b|\\biPod\\b', 'i').test(window.navigator.userAgent);
 // let moneyKeyboardWrapProps;
@@ -62,7 +62,7 @@ import styles from './index.less';
 //   });
 // };
 
-export default function Home() {
+export default function Report() {
   const [visible, setVisible] = useState(false);
 
   const handlePrintPreview = () => {
